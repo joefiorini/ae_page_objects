@@ -1,7 +1,9 @@
 module AePageObjects
   class Element < Node
+    include Concerns::StaleableBlock
+
     attr_reader :parent
-    
+
     class << self
       def new(*args)
         super(*args).tap do |me|
