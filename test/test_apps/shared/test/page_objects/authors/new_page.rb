@@ -1,6 +1,6 @@
 module PageObjects
   module Authors
-    class NewPage < ::AePageObjects::Document
+    class NewPage < PageObjects::Site.document
 
       path :new_author
 

@@ -11,9 +11,11 @@ module AePageObjects
     end
     
     class << self
+      attr_accessor :page_objects_site_class
+
     private
       def site
-        @site ||= AePageObjects::Site.from(self)
+        @site ||= page_objects_site_class.instance
       end
     end
   end

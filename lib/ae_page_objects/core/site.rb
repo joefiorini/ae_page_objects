@@ -35,6 +35,12 @@ module AePageObjects
 
         nil
       end
+
+      def document
+        @document_class ||= Class.new(Document).tap do |klazz|
+          klazz.page_objects_site_class = self
+        end
+      end
     end
 
     attr_writer :router
