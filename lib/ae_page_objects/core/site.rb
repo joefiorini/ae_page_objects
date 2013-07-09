@@ -1,34 +1,27 @@
 module AePageObjects
   class Site
-    extend AePageObjects::Singleton
+    attr_accessor :router
 
-    class << self
-      private :new
-
-      def initialize!
-        instance.initialize!
-      end
-
-      def router=(router)
-        instance.router = router
-      end
+    def initialize
+      @router = ApplicationRouter.new
     end
 
-    attr_writer :router
+    def visit(document_class, *args)
+      raise ArgumentError, "Cannot pass block to visit()" if block_given?
+
+      full_path = router.generate_path(document_class.visitable_path, *args)
+
+      unless full_path
+        raise PathNotResolvable,
+              "#{document_class.name} not visitable via #{document_class.visitable_path}(#{args.inspect})"
+      end
+
+      Capybara.current_session.visit(full_path)
+      document_class.new(self)
+    end
 
     def path_recognizes_url?(*args)
       self.router.path_recognizes_url?(*args)
-    end
-
-    def generate_path(*args)
-      self.router.generate_path(*args)
-    end
-
-    def router
-      @router ||= ApplicationRouter.new
-    end
-
-    def initialize!
     end
   end
 end

@@ -1,6 +1,14 @@
 module AePageObjects
   class Document < Node
     include Concerns::Visitable
+
+    attr_reader :site
+
+    def initialize(site)
+      @site = site
+
+      super(Capybara.current_session)
+    end
     
     def initialize
       super(Capybara.current_session)
@@ -8,13 +16,6 @@ module AePageObjects
 
     def document
       self
-    end
-    
-    class << self
-    private
-      def site
-        @site ||= AePageObjects::Site.from(self)
-      end
     end
   end
 end

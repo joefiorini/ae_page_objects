@@ -7,4 +7,3 @@ module PageObjects
   end
 end
 
-PageObjects::Site.initialize!

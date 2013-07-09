@@ -11,7 +11,6 @@ module AePageObjects
   autoload :RakeRouter,           'ae_page_objects/core/rake_router'
   autoload :Dsl,                  'ae_page_objects/core/dsl'
 
-  autoload :Singleton,            'ae_page_objects/util/singleton'
   autoload :InternalHelpers,      'ae_page_objects/util/internal_helpers'
   autoload :HashSymbolizer,       'ae_page_objects/util/hash_symbolizer'
 

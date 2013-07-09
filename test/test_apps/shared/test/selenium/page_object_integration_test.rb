@@ -1,17 +1,15 @@
 require 'selenium_helper'
 
 class PageObjectIntegrationTest < Selenium::TestCase
+  attr_reader :site
 
-  def test_site_setup
-    assert_equal PageObjects::Site.instance, PageObjects::Authors::NewPage.send(:site)
-    assert_equal PageObjects::Site, PageObjects.page_objects_site_class
-  end
+  setup :setup_site
 
   def test_load_ensuring
     visit("/books/new")
     
     exception = assert_raises AePageObjects::LoadingFailed do
-      PageObjects::Authors::NewPage.new
+      PageObjects::Authors::NewPage.new(site)
     end
 
     assert_equal "PageObjects::Authors::NewPage cannot be loaded with url '/books/new'", exception.message
@@ -19,12 +17,12 @@ class PageObjectIntegrationTest < Selenium::TestCase
     visit("/authors/new")
 
     assert_nothing_raised do
-      PageObjects::Authors::NewPage.new
+      PageObjects::Authors::NewPage.new(site)
     end
   end
   
   def test_simple_form
-    new_page = PageObjects::Books::NewPage.visit
+    new_page = site.visit(PageObjects::Books::NewPage)
     assert_equal "", new_page.title.value
     assert_equal "", new_page.index.pages.value
 
@@ -39,7 +37,7 @@ class PageObjectIntegrationTest < Selenium::TestCase
   end
   
   def test_complex_form
-    new_author_page = PageObjects::Authors::NewPage.visit
+    new_author_page = site.visit(PageObjects::Authors::NewPage)
     assert_equal "", new_author_page.first_name.value
     assert_equal "", new_author_page.last_name.value
     assert_equal "", new_author_page.books.first.title.value
@@ -60,7 +58,7 @@ class PageObjectIntegrationTest < Selenium::TestCase
   end
   
   def test_element_proxy
-    author = PageObjects::Authors::NewPage.visit
+    author = site.visit(PageObjects::Authors::NewPage)
 
     Capybara.using_wait_time(1) do
       assert author.rating.star.present?
@@ -92,7 +90,7 @@ class PageObjectIntegrationTest < Selenium::TestCase
   end
   
   def test_element_proxy__not_present
-    author = PageObjects::Authors::NewPage.visit
+    author = site.visit(PageObjects::Authors::NewPage)
     assert_false author.missing.present?
     assert author.missing.not_present?
   rescue => e
@@ -101,7 +99,8 @@ class PageObjectIntegrationTest < Selenium::TestCase
   end
   
   def test_element_proxy__nested
-    author = PageObjects::Authors::NewPage.visit
+    author = site.visit(PageObjects::Authors::NewPage)
+
     Capybara.using_wait_time(1) do
       assert author.nested_rating.star.present?
 
@@ -120,5 +119,11 @@ class PageObjectIntegrationTest < Selenium::TestCase
   rescue => e
     puts e.backtrace.join("\n")
     raise e      
+  end
+
+private
+
+  def setup_site
+    @site = PageObjects::Site.new
   end
 end

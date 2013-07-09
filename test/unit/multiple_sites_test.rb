@@ -18,8 +18,9 @@ class AePageObjects::MultipleSitesTest < Test::Unit::TestCase
   
   def test_initialize_works
     assert_nothing_raised do
-      TestApp1::AePageObjects::Site.initialize!
-      TestApp2::AePageObjects::Site.initialize!
+      TestApp1::AePageObjects::Site.new
+      TestApp2::AePageObjects::Site.new
+      AePageObjects::Site.new
     end
   end
 end
