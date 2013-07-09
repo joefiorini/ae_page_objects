@@ -5,7 +5,6 @@ require 'ae_page_objects/version'
 require 'ae_page_objects/exceptions'
 
 module AePageObjects
-  autoload :Universe,             'ae_page_objects/core/universe'
   autoload :Site,                 'ae_page_objects/core/site'
   autoload :BasicRouter,          'ae_page_objects/core/basic_router'
   autoload :ApplicationRouter,    'ae_page_objects/core/application_router'
@@ -15,7 +14,6 @@ module AePageObjects
   autoload :Singleton,            'ae_page_objects/util/singleton'
   autoload :InternalHelpers,      'ae_page_objects/util/internal_helpers'
   autoload :HashSymbolizer,       'ae_page_objects/util/hash_symbolizer'
-  autoload :Inflector,            'ae_page_objects/util/inflector'
 
   module Concerns
     autoload :LoadEnsuring,     'ae_page_objects/concerns/load_ensuring'
@@ -33,8 +31,6 @@ module AePageObjects
   autoload :Select,            'ae_page_objects/elements/select'
   autoload :Checkbox,          'ae_page_objects/elements/checkbox'  
 end
-
-require 'ae_page_objects/core_ext/module'
 
 
 
