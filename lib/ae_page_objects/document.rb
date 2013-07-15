@@ -9,10 +9,6 @@ module AePageObjects
 
       super(Capybara.current_session)
     end
-    
-    def initialize
-      super(Capybara.current_session)
-    end
 
     def document
       self
