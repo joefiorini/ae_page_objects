@@ -9,7 +9,7 @@ module AePageObjects
       document_stub = mock
       Capybara.stubs(:current_session).returns(document_stub)
       
-      kitty_page = kitty_class.new
+      kitty_page = kitty_class.new(site)
       
       assert_equal document_stub, kitty_page.node
       
@@ -26,7 +26,7 @@ module AePageObjects
       document_stub = mock
       Capybara.stubs(:current_session).returns(document_stub)
 
-      kitty_page = kitty_class.new
+      kitty_page = kitty_class.new(site)
 
       document_stub.expects(:find).with(1, 2).returns("result")
       assert_equal "result", kitty_page.find(1, 2)

@@ -2,14 +2,14 @@ require 'unit_helper'
 
 module AePageObjects
   class StaleableTest < Test::Unit::TestCase
-  
+
     def test_stale
       kitty_class = ::AePageObjects::Document.new_subclass
       
       document_stub = mock
       Capybara.stubs(:current_session).returns(document_stub)
       
-      kitty_page = kitty_class.new
+      kitty_page = kitty_class.new(site)
       assert_equal document_stub, kitty_page.node
       assert_false kitty_page.stale?
       

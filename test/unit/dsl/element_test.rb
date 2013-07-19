@@ -14,7 +14,7 @@ module AePageObjects
         document_stub = mock
         Capybara.stubs(:current_session).returns(document_stub)
 
-        jon = kitty.new
+        jon = kitty.new(site)
       
         kind_page_object = mock
         document_stub.expects(:find).with("#kind").returns(kind_page_object)
@@ -35,7 +35,7 @@ module AePageObjects
         document_stub = mock
         Capybara.stubs(:current_session).returns(document_stub)
 
-        jon = kitty.new
+        jon = kitty.new(site)
         
         kind_page_object = mock
         document_stub.expects(:find).with("#kind").returns(kind_page_object)
@@ -69,7 +69,7 @@ module AePageObjects
         document_stub = mock
         Capybara.stubs(:current_session).returns(document_stub)
 
-        jon = kitty.new
+        jon = kitty.new(site)
       
         kind_page_object = mock
         document_stub.expects(:find).with("Kind Homie").returns(kind_page_object)
@@ -87,7 +87,7 @@ module AePageObjects
         document_stub = mock
         Capybara.stubs(:current_session).returns(document_stub)
 
-        jon = kitty.new
+        jon = kitty.new(site)
         jon.expects(:page_local_context).returns("hello")
       
         kind_page_object = mock
@@ -106,8 +106,8 @@ module AePageObjects
         document_stub = mock
         Capybara.stubs(:current_session).returns(document_stub)
 
-        jon = kitty.new
-      
+        jon = kitty.new(site)
+
         kind_page_object = mock
         document_stub.expects(:find).with("#kind").returns(kind_page_object)
         verify_field(jon, :kind, ::AePageObjects::Select, kind_page_object)
@@ -124,7 +124,7 @@ module AePageObjects
         document_stub = mock
         Capybara.stubs(:current_session).returns(document_stub)
 
-        jon = kitty.new
+        jon = kitty.new(site)
       
         kind_page_object = mock
         document_stub.expects(:find).with("#kind").returns(kind_page_object)
@@ -144,7 +144,7 @@ module AePageObjects
         document_stub = mock
         Capybara.stubs(:current_session).returns(document_stub)
 
-        jon = kitty.new
+        jon = kitty.new(site)
       
         kind_page_object = mock
         document_stub.expects(:find).with("#kind").returns(kind_page_object)
@@ -165,7 +165,7 @@ module AePageObjects
         document_stub = mock
         Capybara.stubs(:current_session).returns(document_stub)
 
-        jon = kitty.new
+        jon = kitty.new(site)
       
         kind_page_object = mock
         document_stub.expects(:find).with("As If!").returns(kind_page_object)
@@ -193,7 +193,7 @@ module AePageObjects
         document_stub = mock
         Capybara.stubs(:current_session).returns(document_stub)
 
-        jon = kitty.new
+        jon = kitty.new(site)
 
         tail_page_object = mock
         document_stub.expects(:find).with("#tail_attributes").returns(tail_page_object)
@@ -244,7 +244,7 @@ module AePageObjects
         document_stub = mock
         Capybara.stubs(:current_session).returns(document_stub)
 
-        jon = kitty.new
+        jon = kitty.new(site)
 
         tail_page_object = mock
         document_stub.expects(:find).with("#tail_attributes").returns(tail_page_object)
@@ -292,7 +292,7 @@ module AePageObjects
         document_stub = mock
         Capybara.stubs(:current_session).returns(document_stub)
 
-        jon = kitty.new
+        jon = kitty.new(site)
 
         tail_page_object = mock
         document_stub.expects(:find).with("#tail_attributes").returns(tail_page_object)
@@ -338,7 +338,7 @@ module AePageObjects
         document_stub = mock
         Capybara.stubs(:current_session).returns(document_stub)
 
-        jon = kitty.new
+        jon = kitty.new(site)
 
         tail_page_object = mock
         document_stub.expects(:find).with("what ever you want, baby").returns(tail_page_object)
@@ -384,7 +384,7 @@ module AePageObjects
         document_stub = mock
         Capybara.stubs(:current_session).returns(document_stub)
 
-        jon = kitty.new
+        jon = kitty.new(site)
 
         tail_page_object = mock
         document_stub.expects(:find).with("#tail_attributes").returns(tail_page_object)

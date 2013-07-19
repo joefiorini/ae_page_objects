@@ -10,7 +10,7 @@ module AePageObjects
       document_stub = mock
       Capybara.stubs(:current_session).returns(document_stub)
 
-      pet           = pet_class.new
+      pet           = pet_class.new(site)
       
       error = assert_raises ArgumentError do
         kitty_class.new(pet)
@@ -26,7 +26,7 @@ module AePageObjects
       document_stub = mock
       Capybara.stubs(:current_session).returns(document_stub)
 
-      pet           = pet_class.new
+      pet           = pet_class.new(site)
 
       kitty_page_object = mock
       document_stub.expects(:find).with("#tiger").returns(kitty_page_object)
@@ -46,7 +46,7 @@ module AePageObjects
       document_stub = mock
       Capybara.stubs(:current_session).returns(document_stub)
 
-      pet           = pet_class.new
+      pet           = pet_class.new(site)
 
       kitty_page_object = mock
       document_stub.expects(:find).with("#tiger").returns(kitty_page_object)
@@ -66,7 +66,7 @@ module AePageObjects
       document_stub = mock
       Capybara.stubs(:current_session).returns(document_stub)
 
-      pet           = pet_class.new
+      pet           = pet_class.new(site)
       
       kitty_page_object = mock
       document_stub.expects(:find).with("J 2da K").returns(kitty_page_object)
@@ -86,7 +86,7 @@ module AePageObjects
       document_stub = stub
       Capybara.stubs(:current_session).returns(document_stub)
 
-      kitty_page    = kitty_page_class.new
+      kitty_page    = kitty_page_class.new(site)
       assert_equal kitty_page, kitty_page.document
       
       document_stub.stubs(:find).returns(document_stub)
@@ -118,7 +118,7 @@ module AePageObjects
 
       capybara_stub
 
-      kitty_page = kitty_page_class.new
+      kitty_page = kitty_page_class.new(site)
       capybara_stub.session.stubs(:find).returns(capybara_stub.session)
 
       kitty1 = kitty_class.new(kitty_page, :locator => 'purr')

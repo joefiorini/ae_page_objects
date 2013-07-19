@@ -24,7 +24,7 @@ module AePageObjects
       document_stub = mock
       Capybara.stubs(:current_session).returns(document_stub)
 
-      jon = kitty_class.new
+      jon = kitty_class.new(site)
       
       verify_top_level_form_field(jon, :name, document_stub)
       verify_top_level_form_field(jon, :age, document_stub)
@@ -59,7 +59,7 @@ module AePageObjects
       document_stub = mock
       Capybara.stubs(:current_session).returns(document_stub)
 
-      jon = kitty_class.new
+      jon = kitty_class.new(site)
 
       verify_top_level_form_field(jon, :name, document_stub) do |field_xpath, field_page_object|
         document_stub.stubs(:find).with("#the_kat_name").returns(field_page_object)
@@ -102,7 +102,7 @@ module AePageObjects
       document_stub = mock
       Capybara.stubs(:current_session).returns(document_stub)
 
-      jon = kitty_class.new
+      jon = kitty_class.new(site)
 
       kitty_box_page_stub = mock
 

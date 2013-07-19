@@ -14,6 +14,10 @@ class Test::Unit::TestCase
   include NodeFieldTestHelpers
   include AfCruft
 
+  def site
+    @site = mock
+  end
+
   def capybara_stub
     @capybara_stub ||= begin
       browser_stub = stub
