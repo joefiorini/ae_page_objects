@@ -14,6 +14,11 @@ module AePageObjects
       attr_accessor :page_objects_site_class
 
     private
+
+      def inherited(subclass)
+        subclass.page_objects_site_class = self.page_objects_site_class
+      end
+
       def site
         @site ||= page_objects_site_class.instance
       end

@@ -4,7 +4,8 @@ class PageObjectIntegrationTest < Selenium::TestCase
 
   def test_site_setup
     assert_equal PageObjects::Site.instance, PageObjects::Authors::NewPage.send(:site)
-    assert_equal PageObjects::Site, PageObjects.page_objects_site_class
+    assert_equal PageObjects::Site, PageObjects::Authors::NewPage.page_objects_site_class
+    assert_equal PageObjects::Site, PageObjects::Site.document.page_objects_site_class
   end
 
   def test_load_ensuring

@@ -1,7 +1,7 @@
 module TestApp
   module PageObjects
     module Authors
-      class IndexPage < AePageObjects::Document
+      class IndexPage < PageObjects::Site.document
         path :authors
 
         class Table < AePageObjects::Collection
