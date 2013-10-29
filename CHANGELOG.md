@@ -1,3 +1,8 @@
+## X.X.X
+
+* Added Document.find()
+* Added VariableDocument
+
 ## 1.0.1
 
 * Issue [Load ensuring for documents should poll on the url #53](https://github.com/appfolio/ae_page_objects/issues/53)
